@@ -1,0 +1,62 @@
+* { 
+  left: 0px;
+  top: 0;
+  position: fixed;
+}
+
+.controller {
+  left: 0px;
+  top: 0;
+  position: fixed;
+
+  --input-size:    26px;
+  --input-padding: 0px;
+}
+
+.face,
+.button,
+.arrows .start,
+.arrows .back
+{
+  position: fixed;
+  display: block;
+  width: var(--input-size);
+  height: var(--input-size);
+  background-image: url("./gamepadeviewer.png");
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+
+.face.up    { --input-index: 0 }
+.face.down  { --input-index: 1 }
+.face.left  { --input-index: 2 }
+.face.right { --input-index: 3 }
+.button.b   { --input-index: 4 }
+.button.a   { --input-index: 5 }
+
+.face.up,
+.face.down,
+.face.left,
+.face.right,
+.button.a,
+.button.b,
+.arrows .back,
+.arrows .start
+{
+  left: calc(var(--input-size) * var(--input-index));
+  background-position-x: calc(0px - (var(--input-size) * var(--input-index)));
+  background-position-y: 0;
+}
+
+.face.up.pressed,
+.face.down.pressed,
+.face.left.pressed,
+.face.right.pressed,
+.button.a.pressed,
+.button.b.pressed,
+.arrows .back.pressed,
+.arrows .start.pressed
+{
+  background-position-y: calc(0px - var(--input-size));
+}
