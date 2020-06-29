@@ -4,6 +4,7 @@ if(window.location.search.includes("debug")) {
 }
 
 if(window.APP.DEBUG) {
-  document.documentElement.style.backgroundColor = 'magenta';
-  document.body.style.backgroundColor = 'magenta';
+  const backgroundColor = 'black';
+  document.documentElement.style.backgroundColor = backgroundColor;
+  document.body.style.backgroundColor = backgroundColor;
 }

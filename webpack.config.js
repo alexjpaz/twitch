@@ -5,6 +5,7 @@ var path = require('path');
 module.exports = {
   entry: {
     "common": path.resolve(__dirname, './src/common.js'),
+    "admin": path.resolve(__dirname, './src/admin.js'),
     "overlay": path.resolve(__dirname, './src/overlay.js'),
   },
   module: {
@@ -26,8 +27,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      filename: "admin",
+      chunks: ['common','admin'],
+    }),
+    new HtmlWebpackPlugin({
       filename: "overlay",
       chunks: ['common','overlay'],
     })
-  ]
+  ],
 };

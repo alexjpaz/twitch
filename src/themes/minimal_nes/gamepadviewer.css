@@ -9,8 +9,8 @@
   top: 0;
   position: fixed;
 
-  --input-size:    26px;
-  --input-padding: 0px;
+  --input-size:    32px;
+  --input-padding: 8px;
 }
 
 .face,
@@ -22,18 +22,24 @@
   display: block;
   width: var(--input-size);
   height: var(--input-size);
-  background-image: url("./gamepadeviewer.png");
+  background-image: url("./gamepadviewer.png");
   background-repeat: no-repeat;
+  background-size: auto 200%;
   image-rendering: pixelated;
 }
 
 
-.face.up    { --input-index: 0 }
-.face.down  { --input-index: 1 }
-.face.left  { --input-index: 2 }
-.face.right { --input-index: 3 }
-.button.b   { --input-index: 4 }
-.button.a   { --input-index: 5 }
+.face.up       { --input-index: 0 }
+.face.down     { --input-index: 1 }
+.face.left     { --input-index: 2 }
+.face.right    { --input-index: 3 }
+.button.b      { --input-index: 4 }
+.button.a      { --input-index: 5 }
+.button.x      { --input-index: 6 }
+.button.y      { --input-index: 7 }
+.arrows .back  { --input-index: 8 }
+.arrows .start { --input-index: 9 }
+
 
 .face.up,
 .face.down,
@@ -41,6 +47,8 @@
 .face.right,
 .button.a,
 .button.b,
+.button.x,
+.button.y,
 .arrows .back,
 .arrows .start
 {
@@ -55,8 +63,16 @@
 .face.right.pressed,
 .button.a.pressed,
 .button.b.pressed,
+.button.x.pressed,
+.button.y.pressed,
 .arrows .back.pressed,
 .arrows .start.pressed
 {
   background-position-y: calc(0px - var(--input-size));
+}
+
+.button.x,
+.button.y 
+{
+  display: none;
 }

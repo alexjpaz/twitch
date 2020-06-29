@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 
 import styled, { ThemeProvider } from 'styled-components'
 
+import { OverlayContext } from '../OverlayContext';
+
 const Scene = styled.div`
   width: ${props => props.theme.width}px;
   height: ${props => props.theme.height}px;
   perspective: 500px;
 
-  position: fixed;
+  position: absolute;
 
   right: ${props => props.theme.right}px;
   top: ${props => props.theme.top}px;
@@ -104,6 +106,8 @@ const BoxFaceLeft = styled.div`
 `;
 
 export const Boxart = () => {
+  const ctx = React.useContext(OverlayContext);
+
   const list = [
     'rotate3d(0, 0, 0, 0deg)',
     'rotate3d(0.10, 1, 0, 30deg)',
@@ -139,14 +143,13 @@ export const Boxart = () => {
   });
 
   const theme = {
-    right: 80,
-    top: 500,
+    right: 20,
+    top: 20,
     width: 120,
     height: 180,
     depth: 20,
     fillColor: 'grey',
-    imageUrl: "https://www.speedrun.com/themes/cv1/cover-256.png?version=",
-    //imageUrl: "https://www.speedrun.com/themes/drmariones/cover-256.png?version=",
+    imageUrl: ctx.boxartUrl,
     rotation,
   };
 

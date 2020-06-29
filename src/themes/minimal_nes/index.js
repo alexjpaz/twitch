@@ -8,6 +8,8 @@ import { Boxart } from '../../components/Boxart';
 
 import Facecam from './components/Facecam';
 import GamepadViewer from './components/GamepadViewer';
+import Content from './components/Content';
+import Stats from './components/Stats';
 
 const DisplayPlaceholder = styled.div`
   position: fixed;
@@ -57,7 +59,10 @@ export const Overlay = () => {
         <GamepadViewer />
         <Sidebar />
         <Facecam />
-        { /* <Boxart data-test-id='boxart' /> */ }
+        <Content>
+          <Boxart />
+          <Stats />
+        </Content>
         <Bottom />
       </>
     </ThemeProvider>

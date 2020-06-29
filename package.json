@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open --devtool inline-source-map",
-    "start": "webpack-dev-server --output-public-path http://localhost:8080/",
+    "start": "webpack-dev-server --output-public-path http://localhost:8080/ --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook"
   },
@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "express-ws": "^4.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1",
