@@ -7,6 +7,7 @@ module.exports = {
     "common": path.resolve(__dirname, './src/common.js'),
     "admin": path.resolve(__dirname, './src/admin.js'),
     "overlay": path.resolve(__dirname, './src/overlay.js'),
+    "pause": path.resolve(__dirname, './src/pause.js'),
   },
   module: {
     rules: [
@@ -33,6 +34,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "overlay",
       chunks: ['common','overlay'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: "pause",
+      chunks: ['common','pause'],
     })
   ],
 };

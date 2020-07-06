@@ -6,14 +6,15 @@ import styled, { ThemeProvider } from 'styled-components'
 import { OverlayContext } from '../OverlayContext';
 
 const Scene = styled.div`
-  width: ${props => props.theme.width}px;
-  height: ${props => props.theme.height}px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   perspective: 500px;
 
   position: absolute;
-
-  right: ${props => props.theme.right}px;
-  top: ${props => props.theme.top}px;
 `;
 
 const Box = styled.div`
@@ -143,7 +144,7 @@ export const Boxart = () => {
   });
 
   const theme = {
-    right: 20,
+    right: 40,
     top: 20,
     width: 120,
     height: 180,

@@ -15,13 +15,25 @@ const Server = () => {
   let statListeners = [];
 
   app.ws('/stats', (ws, req) => {
+    let connectionExists = (statListeners.indexOf(ws) >= 0);
+
+    if(connectionExists) {
+      return;
+    }
+
+    console.log('stat listener opened');
     statListeners.push(ws);
+
+    ws.on('close', () => {
+      console.log('stat listener closed');
+      var index = statListeners.indexOf(ws);
+      if (index !== -1) statListeners.splice(index, 1);
+    });
   });
 
   app.ws('/admin', (ws, req) => {
-    ws.send("HOLA");
     ws.on('message', (msg) => {
-      console.log(1111111111);
+    console.log("broadcasting message to %s listeners", statListeners.length);
       statListeners.forEach(async (ws) => {
         try {
           const json = JSON.parse(msg);

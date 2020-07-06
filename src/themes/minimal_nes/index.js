@@ -41,6 +41,10 @@ const Bottom = () => {
 
 };
 
+const Container =  styled.div`
+  font-family: "MegaMan 2 Regular";
+  color: white;
+`;
 
 
 export const Overlay = () => {
@@ -50,21 +54,22 @@ export const Overlay = () => {
     SCREEN_WIDTH: ctx.SCREEN_WIDTH,
     SCREEN_HEIGHT: ctx.SCREEN_HEIGHT,
     SIDEBAR_WIDTH: ctx.SIDEBAR_WIDTH,
+    color1: '#3a3277',
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <>
+      <Container>
         <DisplayPlaceholder />
         <GamepadViewer />
         <Sidebar />
         <Facecam />
         <Content>
           <Boxart />
-          <Stats />
         </Content>
+        <Stats />
         <Bottom />
-      </>
+      </Container>
     </ThemeProvider>
   );
 };

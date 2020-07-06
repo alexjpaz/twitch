@@ -6,6 +6,8 @@ import deathsimg from '../images/deaths.png';
 
 const Container = styled.div`
   position: absolute;
+  right: 0;
+  bottom: 0;
 `;
 
 const DeathsIcon = styled.div`
@@ -27,15 +29,38 @@ export default function({ children }) {
   const [ deaths, setDeaths ] = React.useState(0);
 
   React.useEffect(() => {
-    const ws = new WebSocket("ws://localhost:4000/stats");
+    let connectTimeoutId = null;
+    let ws = null;
+    let uri = "ws://localhost:4000/stats";
 
-    ws.addEventListener('message', (event) => {
-      console.log(123);
-      const data = JSON.parse(event.data);
+    function start() {
+      ws = new WebSocket(uri);
 
-      setDeaths(data.deaths);
-    });
-  });
+      ws.addEventListener('open', (event) => {
+        clearTimeout(connectTimeoutId);
+      });
+
+      ws.addEventListener('message', (event) => {
+        console.log(123, event.data);
+        const data = JSON.parse(event.data);
+        setDeaths(data.deaths);
+      });
+
+      ws.addEventListener('close', (event) => {
+        ws = null;
+
+        console.info("Connection closes, retrying...");
+
+        setTimeout(start, 2000);
+      });
+    }
+
+    start();
+
+    return () => {
+      clearTimeout(connectTimeoutId);
+    };
+  }, [ ]);
 
   return (
     <Container>

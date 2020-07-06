@@ -15,9 +15,30 @@ export const Admin = () => {
   const [ ws, setWs ] = React.useState(null);
 
   React.useEffect(() => {
-    const ws = new WebSocket("ws://0.0.0.0:4000/admin");
+    let ws = null;
+    let connectTimeoutId = null;
+    let uri = "ws://localhost:4000/admin";
 
-    setWs(ws);
+    function start() {
+      ws = new WebSocket(uri);
+
+      ws.addEventListener('open', (event) => {
+        console.info('connected');
+        clearTimeout(connectTimeoutId);
+        setWs(ws);
+      });
+
+      ws.addEventListener('close', (event) => {
+        ws = null;
+        setWs(ws);
+
+        console.info("Connection closes, retrying...");
+
+        setTimeout(start, 2000);
+      });
+    }
+
+    start();
   }, [ ]);
 
   const onChange = (e) => {
